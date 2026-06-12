@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-primary-paper text-primary-dark font-sans antialiased;
+  }
+  
+  * {
+    @apply border-primary/20;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-lg border border-primary/20 shadow-sm p-4 transition-all duration-300 hover:shadow-md;
+  }
+  
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary text-white hover:bg-primary-dark focus:ring-primary/50;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-primary-pale text-primary-dark hover:bg-primary-light/30 focus:ring-primary-pale/50;
+  }
+  
+  .input {
+    @apply w-full px-3 py-2 border border-primary/30 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary;
+  }
+  
+  .label {
+    @apply block text-sm font-medium text-primary-dark mb-1;
+  }
+  
+  .status-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .status-normal {
+    @apply status-badge bg-status-normal/10 text-status-normal;
+  }
+  
+  .status-warning {
+    @apply status-badge bg-status-warning/10 text-status-warning;
+  }
+  
+  .status-alert {
+    @apply status-badge bg-status-alert/10 text-status-alert;
+  }
+  
+  .salt-hotspot {
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  
+  .number-scroll {
+    animation: slideUp 0.5s ease-out;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F0E6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DEB887;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D2691E;
+}
