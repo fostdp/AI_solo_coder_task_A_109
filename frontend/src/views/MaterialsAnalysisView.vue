@@ -26,9 +26,9 @@
           <h3 class="font-medium text-primary-dark mb-4">
             <span class="mr-2">⚖️</span>六维雷达图对比
           </h3>
-          <RadarChart
-            :indicators="indicators"
-            :series="radarSeries"
+          <RadarCanvas
+            :dimensions="dimLabels"
+            :series="radarCanvasSeries"
             height="350px"
           />
         </div>
@@ -172,7 +172,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import RadarChart from '@/components/RadarChart.vue'
+import RadarCanvas from '@/components/RadarCanvas.vue'
 import { useSculptureStore } from '@/stores/sculptureStore'
 import { api } from '@/api'
 import type { Sculpture, MaterialScore } from '@/types'
@@ -195,6 +195,7 @@ const scoreDimensions = [
 ]
 
 const indicators = scoreDimensions.map(d => ({ name: d.label, max: 100 }))
+const dimLabels = scoreDimensions.map(d => d.label)
 
 const weights = [
   { name: 'contactAngle', label: '接触角', weight: 0.20 },
@@ -223,6 +224,22 @@ const radarSeries = computed(() =>
       s.costPerformance
     ],
     color: colors[i % colors.length]
+  }))
+)
+
+const radarCanvasSeries = computed(() =>
+  scores.value.map((s, i) => ({
+    name: s.materialName,
+    values: [
+      s.contactAngle || 0,
+      s.penetrationDepth || 0,
+      s.strengthMatch || 0,
+      s.weatherResistance || 0,
+      s.reversibility || 0,
+      s.costPerformance || 0
+    ],
+    color: colors[i % colors.length],
+    total: s.totalScore !== undefined ? Math.round(s.totalScore * 10) / 10 : undefined
   }))
 )
 
