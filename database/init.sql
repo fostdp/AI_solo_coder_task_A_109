@@ -136,6 +136,10 @@ CREATE TABLE IF NOT EXISTS migration_predictions (
     humidity REAL NOT NULL,
     surface_concentration REAL NOT NULL,
     prediction_hours INTEGER NOT NULL,
+    surface_evaporation_rate REAL,
+    surface_enrichment_ratio REAL,
+    max_concentration REAL,
+    average_concentration REAL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -144,7 +148,8 @@ CREATE TABLE IF NOT EXISTS migration_prediction_points (
     prediction_id INTEGER NOT NULL REFERENCES migration_predictions(id),
     time_hour INTEGER NOT NULL,
     depth_cm REAL NOT NULL,
-    concentration REAL NOT NULL
+    concentration REAL NOT NULL,
+    moisture_content REAL
 );
 
 INSERT INTO alert_thresholds (alert_type, warning_threshold, critical_threshold, unit, description) VALUES
