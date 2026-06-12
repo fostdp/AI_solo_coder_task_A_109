@@ -28,6 +28,10 @@ namespace SculptureMonitor.Models
 
         public double? AverageConcentration { get; set; }
 
+        public double? SurfaceEvaporationRate { get; set; }
+
+        public double? SurfaceEnrichmentRatio { get; set; }
+
         [MaxLength(1000)]
         public string Notes { get; set; }
 
