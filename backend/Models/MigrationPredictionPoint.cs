@@ -17,6 +17,8 @@ namespace SculptureMonitor.Models
 
         public double Concentration { get; set; }
 
+        public double? MoistureContent { get; set; }
+
         public double? TimeStep { get; set; }
 
         [Column(TypeName = "datetime")]
